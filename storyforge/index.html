@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#090a0f" />
+  <title>StoryForge · 正在启动</title>
+  <style>
+    html,body{height:100%;margin:0;background:#090a0f;color:#f6f3eb;font-family:system-ui,-apple-system,"Segoe UI","PingFang SC",sans-serif}
+    body{display:grid;place-items:center}
+    .loader{text-align:center;padding:28px}
+    .mark{width:48px;height:48px;margin:0 auto 16px;border-radius:15px;display:grid;place-items:center;font-weight:900;background:linear-gradient(145deg,#ff6a3d,#ff3e65)}
+    .sub{color:#8d8e99;font-size:13px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <div class="loader"><div class="mark">SF</div><strong>StoryForge 正在启动</strong><div class="sub">加载网文与 AI 漫剧智能创作台…</div></div>
+  <script>window.__STORYFORGE_PAYLOAD="";</script>
+  <script src="payload-00.js"></script>
+  <script src="payload-01.js"></script>
+  <script src="payload-02.js"></script>
+  <script src="payload-03.js"></script>
+  <script src="payload-04.js"></script>
+  <script src="payload-05.js"></script>
+  <script src="payload-06.js"></script>
+  <script src="payload-07.js"></script>
+  <script src="payload-08.js"></script>
+  <script src="payload-09.js"></script>
+  <script src="payload-10.js"></script>
+  <script>
+    try {
+      const binary=atob(window.__STORYFORGE_PAYLOAD);
+      const bytes=Uint8Array.from(binary,c=>c.charCodeAt(0));
+      const html=new TextDecoder().decode(bytes);
+      document.open(); document.write(html); document.close();
+    } catch (error) {
+      document.body.innerHTML='<div class="loader"><div class="mark">!</div><strong>启动失败</strong><div class="sub">请刷新页面，或使用最新版 Chrome / Edge / Safari。</div></div>';
+      console.error(error);
+    }
+  </script>
+</body>
+</html>
