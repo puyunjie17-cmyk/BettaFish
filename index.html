@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0a0b10" />
+  <meta name="description" content="从一个创意生成网文、漫剧剧本与分镜脚本的 AI 创作工作台。" />
+  <title>StoryForge · 爆款网文与 AI 漫剧工作台</title>
+  <link rel="stylesheet" href="./assets/app.css" />
+</head>
+<body>
+  <div id="boot-screen" class="boot-screen" role="status" aria-live="polite">
+    <div class="boot-card"><div class="boot-mark">SF</div><div class="boot-title">StoryForge 正在启动</div><div id="boot-detail" class="boot-detail">正在初始化网文与 AI 漫剧创作台…</div></div>
+  </div>
+  <noscript><div class="boot-screen error"><div class="boot-card"><div class="boot-mark">!</div><div class="boot-title">需要启用 JavaScript</div><div class="boot-detail">请在浏览器设置中启用 JavaScript 后刷新页面。</div></div></div></noscript>
+  <div id="app"></div>
+  <div id="toast-root" class="toast-root"></div>
+  <div id="modal-root"></div>
+  <script>
+    (() => {
+      const showBootError = (message) => {
+        const screen = document.getElementById('boot-screen');
+        if (!screen || document.getElementById('app')?.children.length) return;
+        screen.classList.add('error');
+        const title = screen.querySelector('.boot-title');
+        const detail = document.getElementById('boot-detail');
+        if (title) title.textContent = '启动失败';
+        if (detail) detail.textContent = '错误：' + String(message || '未知错误') + '。请刷新页面；若仍失败，请复制这段错误信息。';
+      };
+      window.addEventListener('error', event => showBootError(event.error?.message || event.message));
+      window.addEventListener('unhandledrejection', event => showBootError(event.reason?.message || event.reason));
+      window.__storyforgeShowBootError = showBootError;
+      setTimeout(() => {
+        if (!document.getElementById('app')?.children.length) showBootError('应用初始化超时');
+      }, 12000);
+    })();
+  </script>
+  <script src="./assets/app.js" onerror="window.__storyforgeShowBootError?.('应用脚本 assets/app.js 加载失败')"></script>
+</body>
+</html>
